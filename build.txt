@@ -1,0 +1,3 @@
+displayName = Zombie Invasion Mod
+author = First Fractal
+version = 0.1
