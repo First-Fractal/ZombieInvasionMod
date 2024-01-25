@@ -26,7 +26,11 @@ namespace ZombieInvasionMod
                         int clones = 2;
                         if (Main.hardMode)
                         {
-                            if (NPC.downedPlantBoss)
+                            if (NPC.downedMoonlord)
+                            {
+                                //spawn in 8 zombies after Moon Lord
+                                clones = 8;
+                            } else if (NPC.downedPlantBoss)
                             {
                                 //spawn in 6 zombies after plantera
                                 clones = 6;
