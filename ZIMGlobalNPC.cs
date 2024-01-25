@@ -1,5 +1,4 @@
-﻿using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 
@@ -47,7 +46,8 @@ namespace ZombieInvasionMod
                                 clones = 3;
                             }
                         }
-                        Console.WriteLine(clones);
+
+                        //spawn in X clones based on the amount from above
                         for (int i = 0; i < clones; i++) 
                         {
                             //set up the variables for the weighted RNG
