@@ -87,7 +87,7 @@ namespace ZombieInvasionMod
                             int randZom = zombieGroup[Main.rand.Next(zombieGroup.Length)];
 
                             //spawn in a new zombie on top of the current one with the reason being a clone
-                            int index = NPC.NewNPC(new EntitySource_Misc("Zombie Clone"), (int)npc.position.X, (int)npc.position.Y, randZom);
+                            int index = NPC.NewNPC(new EntitySource_Misc("Zombie Clone"), (int)npc.position.X + (Main.rand.Next(-4, 5) * 16), (int)npc.position.Y, randZom);
 
                             //make the npc mean nothing in the npc slots
                             Main.npc[index].npcSlots = 0;
