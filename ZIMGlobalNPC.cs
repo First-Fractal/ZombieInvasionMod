@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace ZombieInvasionMod
 {
@@ -10,7 +11,6 @@ namespace ZombieInvasionMod
         //function that runs whenever a npc spawns in
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            
             //loop through every vanilla zombie
             foreach (int zombie in ffVar.zombies.allZombies)
             {
@@ -20,17 +20,21 @@ namespace ZombieInvasionMod
                     //check if the current zombie is a clone. If not, then give it a clone
                     if (source is EntitySource_Misc misc && misc.Context.Equals("Zombie Clone"))
                     {
-                        ffFunc.Talk("Prevent a zombie clone from spawning in", Color.Orange);
                     }
                     else
                     {
-                        //get a random normal zombie from the list
-                        int randZom = ffVar.zombies.normalZombies[Main.rand.Next(ffVar.zombies.normalZombies.Length)];
+                        //make it spawn in 8 zombies
+                        for (int i = 0; i < 8; i++) 
+                        {
+                            //get a random normal zombie from the list
+                            int randZom = ffVar.zombies.normalZombies[Main.rand.Next(ffVar.zombies.normalZombies.Length)];
 
-                        //spawn in a new zombie on top of the current one with the reason being a clone
-                        NPC.NewNPC(new EntitySource_Misc("Zombie Clone"), (int)npc.position.X, (int)npc.position.Y, randZom);
+                            //spawn in a new zombie on top of the current one with the reason being a clone
+                            int index = NPC.NewNPC(new EntitySource_Misc("Zombie Clone"), (int)npc.position.X, (int)npc.position.Y, randZom);
 
-                        ffFunc.Talk("Spawned in a Zombie Clone", Color.Red);
+                            //make the npc mean nothing in the npc slots
+                            Main.npc[index].npcSlots = 0;
+                        }
                     }
                 }
             }
