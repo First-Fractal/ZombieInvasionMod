@@ -22,8 +22,29 @@ namespace ZombieInvasionMod
                     }
                     else
                     {
-                        //make it spawn in 8 zombies
-                        for (int i = 0; i < 8; i++) 
+                        //make it spawn in x zombies based on the progression
+                        int clones = 2;
+                        if (Main.hardMode)
+                        {
+                            if (NPC.downedPlantBoss)
+                            {
+                                //spawn in 6 zombies after plantera
+                                clones = 6;
+                            } else
+                            {
+                                //spawn in 4 zombies in hardmode
+                                clones = 4;
+                            }
+                        } else
+                        {
+                            if (NPC.downedBoss2)
+                            {
+                                //spawn in 6 zombies after evil boss
+                                clones = 3;
+                            }
+                        }
+                        Console.WriteLine(clones);
+                        for (int i = 0; i < clones; i++) 
                         {
                             //set up the variables for the weighted RNG
                             int chance = Main.rand.Next(101);
